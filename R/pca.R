@@ -5,14 +5,15 @@
 #' @param retx the prcomp param, detail see '?prcomp'
 #' @param str_sample the 'regexp' for the sample name to become the target name
 #' @param str_group the 'regexp' for the group name to become the target name
+#' @param scale the prcomp param, detail see '?prcomp'
 #'
 #' @return a ggplot object
 #' @export
 #'
 #' @examples pca(iris[,-5])
 
-pca <- function(data = exp_data,center = T,retx = T,scale = FALSE,str_sample = "_.*m", str_group = "-.*"){
-  info = prcomp(data,center = center,retx = retx,scale. = scale)
+pca <- function(data = data,center = T,retx = T,scale = FALSE,str_sample = "_.*m", str_group = "-.*"){
+  info = stats::prcomp(data,center = center,retx = retx,scale. = scale)
   pca_info <- summary(info)
   tmp <- pca_info$importance
   pc <- pca_info$x
@@ -23,8 +24,8 @@ pca <- function(data = exp_data,center = T,retx = T,scale = FALSE,str_sample = "
   pc <- cbind(pc,group,sample)
   pc <- tibble::as_tibble(pc)
   pc <- dplyr::mutate_at(pc, dplyr::vars("PC1","PC2"),as.double)
-  plot <- ggplot2::ggplot(data = pc,mapping = ggplot2::aes(x=PC1,y=PC2))+
-    ggplot2::geom_point(size = 2,mapping = ggplot2::aes(color =group))+
+  plot <- ggplot2::ggplot(data = pc,mapping = ggplot2::aes(x = PC1,y = PC2))+
+    ggplot2::geom_point(size = 2,mapping = ggplot2::aes(color = group))+
     ggplot2::geom_hline(yintercept = 0,linetype = 4,color = "grey")+
     ggplot2::geom_vline(xintercept = 0,linetype = 4,color = "grey")+
     ggplot2::geom_polygon(alpha = 0.5,ggplot2::aes(fill = group))+

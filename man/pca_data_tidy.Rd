@@ -7,7 +7,7 @@
 pca_data_tidy(data)
 }
 \arguments{
-\item{data}{}
+\item{data}{the input data must be a dataframe or tibble which' rownames is gene id and colnames is sample name}
 }
 \value{
 a dataframe

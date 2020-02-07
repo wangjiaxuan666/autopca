@@ -1,21 +1,28 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# aotupca
+# autopca
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-The goal of aotupca is to analysis the omics data more simple
+The goal of autopca is to …
 
 ## Installation
 
-You can install the released version of aotupca from
-[Github](https://github.com/) with:
+You can install the released version of autopca from
+[CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("aotupca")
+install.packages("autopca")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("wangjiaxuan666/autopca")
 ```
 
 ## Example
@@ -23,7 +30,7 @@ install.packages("aotupca")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(aotupca)
+library(autopca)
 ## basic example code
 ```
 

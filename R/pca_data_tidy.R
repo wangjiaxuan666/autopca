@@ -1,9 +1,9 @@
 #' the Principal Components Analysis need the data must be transformed
 #'
-#' @param data
+#' @param data the input data must be a dataframe or tibble which' rownames is gene id and colnames is sample name
 #'
 #' @return a dataframe
-#' @export exp_data
+#' @export
 #'
 #' @examples
 #' test = matrix(rnorm(200), 20, 10)
@@ -18,7 +18,8 @@ pca_data_tidy <- function(data){
     if(tibble::is_tibble(data)){
       data = data
     } else {
-      data = tibble::rowid_to_column(colnames(data))
+      data = tibble::rownames_to_column(data)
+      data = tibble::as_tibble(data)
     }
     data_new =  data[,-1]
     geneid = data[,1]

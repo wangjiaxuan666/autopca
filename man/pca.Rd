@@ -5,7 +5,7 @@
 \title{PCA plot}
 \usage{
 pca(
-  data = exp_data,
+  data = data,
   center = T,
   retx = T,
   scale = FALSE,
@@ -19,6 +19,8 @@ pca(
 \item{center}{the prcomp param, detail see '?prcomp'}
 
 \item{retx}{the prcomp param, detail see '?prcomp'}
+
+\item{scale}{the prcomp param, detail see '?prcomp'}
 
 \item{str_sample}{the 'regexp' for the sample name to become the target name}
 

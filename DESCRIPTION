@@ -1,4 +1,4 @@
-Package: aotupca
+Package: autopca
 Title: the packages created for the people can't analysis the bacth on the RNAseq data
 Version: 0.1
 Authors@R: 
@@ -15,7 +15,4 @@ RoxygenNote: 7.0.2
 Suggests: 
     testthat (>= 2.1.0)
 Imports: 
-    stats,
-    ggplot2,
-    dplyr,
-    stringr
+    stats
