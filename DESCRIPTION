@@ -1,13 +1,21 @@
-Package: myfirstRpackage
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Package: aotupca
+Title: the packages created for the people can't analysis the bacth on the RNAseq data
+Version: 0.1
 Authors@R: 
     person(given = "First",
            family = "Last",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
+           email = "poormouse@16.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: What license it uses
+Description: base on the ggplot2, the pca plot is very low and stupid, but is my frist packages.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.0.2
+Suggests: 
+    testthat (>= 2.1.0)
+Imports: 
+    stats,
+    ggplot2,
+    dplyr,
+    stringr
