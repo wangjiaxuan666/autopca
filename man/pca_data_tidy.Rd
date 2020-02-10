@@ -4,10 +4,12 @@
 \alias{pca_data_tidy}
 \title{the Principal Components Analysis need the data must be transformed}
 \usage{
-pca_data_tidy(data)
+pca_data_tidy(data, id = NULL)
 }
 \arguments{
 \item{data}{the input data must be a dataframe or tibble which' rownames is gene id and colnames is sample name}
+
+\item{id}{the rowid, can be a character or the column number}
 }
 \value{
 a dataframe
@@ -22,5 +24,7 @@ test[11:20, seq(2, 10, 2)] = test[11:20, seq(2, 10, 2)] + 2
 test[15:20, seq(2, 10, 2)] = test[15:20, seq(2, 10, 2)] + 4
 colnames(test) = paste("Test", 1:10, sep = "")
 rownames(test) = paste("Gene", 1:20, sep = "")
-pca_data_tidy(as.data.frame(test))
+annot <- c(rep("KEGG",20))
+test <- data.frame(test,annot)
+pca_data_tidy(as.data.frame(test)) -> test
 }

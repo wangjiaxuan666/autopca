@@ -6,29 +6,69 @@
 #' @param str_sample the 'regexp' for the sample name to become the target name
 #' @param str_group the 'regexp' for the group name to become the target name
 #' @param scale the prcomp param, detail see '?prcomp'
+#' @param rename the method for change the sample and group names, two argment can choose, "diy" is for the creat a data for name,"replace" is use regexp to replace or change the name
+#' @param sample_group a data for change the sample and group name, the rownames is sample and the first column is group
 #'
 #' @return a ggplot object
 #' @export
 #'
-#' @examples pca(iris[,-5])
+#' @examples pca(iris[,-5],sample_group = as.data.frame(iris[,5]))
 
-pca <- function(data = data,center = T,retx = T,scale = FALSE,str_sample = "_.*m", str_group = "-.*"){
+pca <- function(data = data,
+                center = T,
+                retx = T,
+                scale = FALSE,
+                rename = c("diy","replace"),
+                sample_group = NULL,
+                str_sample = NULL,
+                str_group = "-.*"){
   info = stats::prcomp(data,center = center,retx = retx,scale. = scale)
   pca_info <- summary(info)
   tmp <- pca_info$importance
   pc <- pca_info$x
   sample <- rownames(data)
-  sample <- stringr::str_replace_all(sample,str_sample,"")
-  group <- stringr::str_replace_all(sample,str_group,"")
+  rename <- match.arg(rename)
+  if(rename == "replace"){
+    if(is.null(str_sample)){
+      stop("the 'str_sample' argment shoud be existed")
+    } else {
+      sample <- sub(str_sample,"",sample)
+      group <- sub(str_group,"",sample)
+    }
+  }
+  if(rename == "diy"){
+    if(is.null(sample_group)){
+      stop("the 'sample_group' argment shoud be existed")
+    } else {
+      cat("...Notice:","the sequence of sample names\n")
+      cat("...must be matched for the input data rownames\n")
+      cat("...If not,the result probably is wrong")
+      if(is.data.frame(sample_group)){
+        if(tibble::is_tibble(data)){
+          sample = sample_group[,1]
+          group = sample_group[,2]
+        } else {
+          sample = rownames(sample_group)
+          group = as.character(sample_group[,1])
+        }
+      }
+    }
+  }
   rownames(pc) <- sample
   pc <- cbind(pc,group,sample)
-  pc <- tibble::as_tibble(pc)
-  pc <- dplyr::mutate_at(pc, dplyr::vars("PC1","PC2"),as.double)
+
+  if(all(rownames(pc) == sample)){
+    pc <- tibble::as_tibble(pc)
+    pc <- dplyr::mutate_at(pc, dplyr::vars("PC1","PC2"),as.double)
+  } else {
+    stop("ERROR!!!!!!, the sample name sequece is not match the input data rowname")
+  }
+
   plot <- ggplot2::ggplot(data = pc,mapping = ggplot2::aes(x = PC1,y = PC2))+
     ggplot2::geom_point(size = 2,mapping = ggplot2::aes(color = group))+
     ggplot2::geom_hline(yintercept = 0,linetype = 4,color = "grey")+
     ggplot2::geom_vline(xintercept = 0,linetype = 4,color = "grey")+
-    ggplot2::geom_polygon(alpha = 0.5,ggplot2::aes(fill = group))+
+    ggplot2::stat_ellipse(geom = "polygon", mapping = ggplot2::aes(fill = group),type = "t", level = 0.95, linetype = 2,alpha = 0.2)+
     ggplot2::labs(
       x = paste("PC1","(",as.numeric(sprintf("%.3f",tmp[2,1]))*100,"%)",sep=""),
       y = paste("PC2","(",as.numeric(sprintf("%.3f",tmp[2,2]))*100,"%)",sep=""),

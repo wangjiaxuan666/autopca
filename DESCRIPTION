@@ -2,12 +2,12 @@ Package: autopca
 Title: the packages created for the people can't analysis the bacth on the RNAseq data
 Version: 0.1
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Jiaxuan",
+           family = "Wang",
            role = c("aut", "cre"),
-           email = "poormouse@16.com",
+           email = "poormouse@126.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: base on the ggplot2, the pca plot is very low and stupid, but is my frist packages.
+Description: base on the ggplot2 and R base, the pca plot is very low and stupid, but is my frist packages.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

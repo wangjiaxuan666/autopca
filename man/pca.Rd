@@ -9,7 +9,9 @@ pca(
   center = T,
   retx = T,
   scale = FALSE,
-  str_sample = "_.*m",
+  rename = c("diy", "replace"),
+  sample_group = NULL,
+  str_sample = NULL,
   str_group = "-.*"
 )
 }
@@ -22,6 +24,10 @@ pca(
 
 \item{scale}{the prcomp param, detail see '?prcomp'}
 
+\item{rename}{the method for change the sample and group names, two argment can choose, "diy" is for the creat a data for name,"replace" is use regexp to replace or change the name}
+
+\item{sample_group}{a data for change the sample and group name, the rownames is sample and the first column is group}
+
 \item{str_sample}{the 'regexp' for the sample name to become the target name}
 
 \item{str_group}{the 'regexp' for the group name to become the target name}
@@ -33,5 +39,5 @@ a ggplot object
 PCA plot
 }
 \examples{
-pca(iris[,-5])
+pca(iris[,-5],sample_group = as.data.frame(iris[,5]))
 }
