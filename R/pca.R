@@ -8,6 +8,7 @@
 #' @param scale the prcomp param, detail see '?prcomp'
 #' @param rename the method for change the sample and group names, two argment can choose, "diy" is for the creat a data for name,"replace" is use regexp to replace or change the name
 #' @param sample_group a data for change the sample and group name, the rownames is sample and the first column is group
+#' @param display_sample if TRUE will add the text labels on points.
 #'
 #' @return a ggplot object
 #' @export
@@ -18,6 +19,7 @@ pca <- function(data = data,
                 center = T,
                 retx = T,
                 scale = FALSE,
+                display_sample = FALSE,
                 rename = c("diy","replace"),
                 sample_group = NULL,
                 str_sample = NULL,
@@ -38,19 +40,19 @@ pca <- function(data = data,
   }
   if(rename == "diy"){
     if(is.null(sample_group)){
-      stop("the 'sample_group' argment shoud be existed")
+      sample_group = data.frame(sample = rownames(data),group = rownames(data))
     } else {
       cat("...Notice:","the sequence of sample names\n")
       cat("...must be matched for the input data rownames\n")
       cat("...If not,the result probably is wrong")
-      if(is.data.frame(sample_group)){
-        if(tibble::is_tibble(data)){
-          sample = sample_group[,1]
-          group = sample_group[,2]
-        } else {
-          sample = rownames(sample_group)
-          group = as.character(sample_group[,1])
-        }
+    }
+    if(is.data.frame(sample_group)){
+      if(tibble::is_tibble(data)){
+        sample = sample_group[,1]
+        group = sample_group[,2]
+      } else {
+        sample = rownames(sample_group)
+        group = as.character(sample_group[,1])
       }
     }
   }
@@ -63,17 +65,22 @@ pca <- function(data = data,
   } else {
     stop("ERROR!!!!!!, the sample name sequece is not match the input data rowname")
   }
-
-  plot <- ggplot2::ggplot(data = pc,mapping = ggplot2::aes(x = PC1,y = PC2))+
-    ggplot2::geom_point(size = 2,mapping = ggplot2::aes(color = group))+
-    ggplot2::geom_hline(yintercept = 0,linetype = 4,color = "grey")+
-    ggplot2::geom_vline(xintercept = 0,linetype = 4,color = "grey")+
-    ggplot2::stat_ellipse(geom = "polygon", mapping = ggplot2::aes(fill = group),type = "t", level = 0.95, linetype = 2,alpha = 0.2)+
-    ggplot2::labs(
-      x = paste("PC1","(",as.numeric(sprintf("%.3f",tmp[2,1]))*100,"%)",sep=""),
-      y = paste("PC2","(",as.numeric(sprintf("%.3f",tmp[2,2]))*100,"%)",sep=""),
-      title = "PCA")+
-    ggplot2::theme_bw()+
-    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5,size =12))
+  p1 <- ggplot2::ggplot(data = pc,mapping = ggplot2::aes(x = PC1,y = PC2))+
+  ggplot2::geom_point(size = 2,mapping = ggplot2::aes(color = group))+
+  ggplot2::geom_hline(yintercept = 0,linetype = 4,color = "grey")+
+  ggplot2::geom_vline(xintercept = 0,linetype = 4,color = "grey")+
+  ggplot2::stat_ellipse(geom = "polygon", mapping = ggplot2::aes(fill = group),type = "t", level = 0.95, linetype = 2,alpha = 0.2)+
+  ggplot2::labs(
+    x = paste("PC1","(",as.numeric(sprintf("%.3f",tmp[2,1]))*100,"%)",sep=""),
+    y = paste("PC2","(",as.numeric(sprintf("%.3f",tmp[2,2]))*100,"%)",sep=""),
+    title = "PCA")+
+  ggplot2::scale_fill_brewer(palette = "Set1")
+  ggplot2::theme_bw()+
+  ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5,size =12))
+  if(display_sample == FALSE){
+    plot = p1
+  } else {
+    plot = p1 + ggplot2::geom_text(aes(label = sample),size = 2)
+  }
   return(plot)
 }

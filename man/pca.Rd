@@ -9,6 +9,7 @@ pca(
   center = T,
   retx = T,
   scale = FALSE,
+  display_sample = FALSE,
   rename = c("diy", "replace"),
   sample_group = NULL,
   str_sample = NULL,
@@ -23,6 +24,8 @@ pca(
 \item{retx}{the prcomp param, detail see '?prcomp'}
 
 \item{scale}{the prcomp param, detail see '?prcomp'}
+
+\item{display_sample}{if TRUE will add the text labels on points.}
 
 \item{rename}{the method for change the sample and group names, two argment can choose, "diy" is for the creat a data for name,"replace" is use regexp to replace or change the name}
 

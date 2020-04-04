@@ -16,7 +16,6 @@ knitr::opts_chunk$set(
 # autopca
 
 <!-- badges: start -->
-[![GitHub watchers](C:\Users\woney\Desktop\素材\图片\StrapDown.js.svg)](https://GitHub.com/Naereen/StrapDown.js/watchers/)[![GitHub followers](C:\Users\woney\Desktop\素材\图片\Naereen.svg)](https://github.com/Naereen?tab=followers)[![Github all releases](C:\Users\woney\Desktop\素材\图片\total.svg)](https://GitHub.com/Naereen/StrapDown.js/releases/)[![GitHub release](C:\Users\woney\Desktop\素材\图片\StrapDown.js-1581315104801.svg)](https://GitHub.com/Naereen/StrapDown.js/releases/) 
 <!-- badges: end -->
 
 Originally,this R package `autopca` was a script I used to draw PCA. PCA can analyze batch effects in experimental processing, and also analyze experimental processing factors. In my point, it is  very important in checking omics data. At present, this R package Features are very few But are under active development. The basic function is already there, so I placed on `github`, if necessary, you can download and use it yourself.

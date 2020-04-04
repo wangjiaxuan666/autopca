@@ -5,12 +5,6 @@
 
 <!-- badges: start -->
 
-[![GitHub
-watchers](C:\\Users\\woney\\Desktop\\素材\\图片\\StrapDown.js.svg)](https://GitHub.com/Naereen/StrapDown.js/watchers/)[![GitHub
-followers](C:\\Users\\woney\\Desktop\\素材\\图片\\Naereen.svg)](https://github.com/Naereen?tab=followers)[![Github
-all
-releases](C:\\Users\\woney\\Desktop\\素材\\图片\\total.svg)](https://GitHub.com/Naereen/StrapDown.js/releases/)[![GitHub
-release](C:\\Users\\woney\\Desktop\\素材\\图片\\StrapDown.js-1581315104801.svg)](https://GitHub.com/Naereen/StrapDown.js/releases/)
 <!-- badges: end -->
 
 Originally,this R package `autopca` was a script I used to draw PCA. PCA
@@ -45,13 +39,20 @@ is the `prcomp` data’ rownames. For example, the data iris
 
 ``` r
 head(iris)
-#>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-#> 1          5.1         3.5          1.4         0.2  setosa
-#> 2          4.9         3.0          1.4         0.2  setosa
-#> 3          4.7         3.2          1.3         0.2  setosa
-#> 4          4.6         3.1          1.5         0.2  setosa
-#> 5          5.0         3.6          1.4         0.2  setosa
-#> 6          5.4         3.9          1.7         0.4  setosa
+#>   Sepal.Length Sepal.Width Petal.Length
+#> 1          5.1         3.5          1.4
+#> 2          4.9         3.0          1.4
+#> 3          4.7         3.2          1.3
+#> 4          4.6         3.1          1.5
+#> 5          5.0         3.6          1.4
+#> 6          5.4         3.9          1.7
+#>   Petal.Width Species
+#> 1         0.2  setosa
+#> 2         0.2  setosa
+#> 3         0.2  setosa
+#> 4         0.2  setosa
+#> 5         0.2  setosa
+#> 6         0.4  setosa
 ```
 
 the rownames is every iris ID number, in iris, we want to demonstrate
@@ -96,20 +97,27 @@ rownames(test) = paste("Gene", 1:20, sep = "")
 annot <- c(rep("KEGG",20))
 test <- data.frame(test,annot)
 head(test)
-#>          Test1      Test2    Test3      Test4    Test5
-#> Gene1 1.765032 -0.3577624 2.477608 -0.4832594 2.964369
-#> Gene2 2.814791 -0.8978281 2.287567  0.3145828 2.777988
-#> Gene3 2.757540 -0.2149529 4.514153  0.8454416 2.844257
-#> Gene4 2.926179 -0.1924484 1.795893  1.1451809 3.975598
-#> Gene5 1.797332  1.5983340 2.719382 -1.7759772 4.771807
-#> Gene6 4.526338 -0.0930217 3.482939 -1.4561555 2.307828
-#>             Test6    Test7      Test8    Test9     Test10 annot
-#> Gene1 -1.13248990 3.035722  1.1860571 2.936626  0.5698577  KEGG
-#> Gene2 -0.48468162 1.719169 -1.2244367 3.123951  1.2850013  KEGG
-#> Gene3  0.32157962 3.638809 -0.8146574 1.073289 -1.2964544  KEGG
-#> Gene4 -0.52685583 3.005546  1.2763350 1.466215 -1.4490338  KEGG
-#> Gene5 -0.37975269 2.188645  0.4032756 3.984414  0.4298045  KEGG
-#> Gene6 -0.01896003 2.572865 -0.7257124 2.830020 -0.4696124  KEGG
+#>          Test1       Test2    Test3       Test4
+#> Gene1 2.672491 -1.46949959 3.252826 -0.06280428
+#> Gene2 2.768949 -0.44892401 2.494386  0.74132818
+#> Gene3 1.698751 -0.61545118 3.013371 -0.25985327
+#> Gene4 1.583889 -0.58912730 3.427422 -0.74294740
+#> Gene5 3.219542 -0.06015898 2.593541  1.01296907
+#> Gene6 3.966006  1.12396478 2.956866 -0.72447530
+#>          Test5      Test6    Test7      Test8
+#> Gene1 3.235160  1.5198640 1.382669  0.4984374
+#> Gene2 2.872426  0.9858101 2.941147 -1.5424356
+#> Gene3 3.712901 -0.7299233 2.186138 -0.8485324
+#> Gene4 3.386010 -0.1949071 1.831074  0.9943122
+#> Gene5 4.190842  0.1630293 2.902171  0.3229494
+#> Gene6 3.848001  0.7799471 3.962820  1.3969977
+#>          Test9     Test10 annot
+#> Gene1 1.974234 -1.2025494  KEGG
+#> Gene2 3.583025  1.5028618  KEGG
+#> Gene3 3.523533 -0.1408430  KEGG
+#> Gene4 2.913314  0.8756251  KEGG
+#> Gene5 3.837058 -0.2416067  KEGG
+#> Gene6 5.665606  2.2361524  KEGG
 ```
 
 Through the above steps, we obtained a classic transcriptome data frame.
