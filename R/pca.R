@@ -80,7 +80,7 @@ pca <- function(data = data,
   if(display_sample == FALSE){
     plot = p1
   } else {
-    plot = p1 + ggplot2::geom_text(aes(label = sample),size = 2)
+    plot = p1 + ggplot2::geom_text(ggplot2::aes(label = sample),size = 2)
   }
   return(plot)
 }
