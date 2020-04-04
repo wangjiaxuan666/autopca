@@ -74,7 +74,6 @@ pca <- function(data = data,
     x = paste("PC1","(",as.numeric(sprintf("%.3f",tmp[2,1]))*100,"%)",sep=""),
     y = paste("PC2","(",as.numeric(sprintf("%.3f",tmp[2,2]))*100,"%)",sep=""),
     title = "PCA")+
-  ggplot2::scale_fill_brewer(palette = "Set1")
   ggplot2::theme_bw()+
   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5,size =12))
   if(display_sample == FALSE){
