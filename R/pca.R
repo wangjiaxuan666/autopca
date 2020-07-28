@@ -44,7 +44,6 @@ pca <- function(data = data,
     } else {
       cat("...Notice:","the sequence of sample names\n")
       cat("...must be matched for the input data rownames\n")
-      cat("...If not,the result probably is wrong")
     }
     if(is.data.frame(sample_group)){
       if(tibble::is_tibble(data)){
@@ -66,7 +65,7 @@ pca <- function(data = data,
     stop("ERROR!!!!!!, the sample name sequece is not match the input data rowname")
   }
   p1 <- ggplot2::ggplot(data = pc,mapping = ggplot2::aes(x = PC1,y = PC2))+
-  ggplot2::geom_point(size = 2,mapping = ggplot2::aes(color = group))+
+  ggplot2::geom_point(size = 4,mapping = ggplot2::aes(color = group))+
   ggplot2::geom_hline(yintercept = 0,linetype = 4,color = "grey")+
   ggplot2::geom_vline(xintercept = 0,linetype = 4,color = "grey")+
   ggplot2::stat_ellipse(geom = "polygon", mapping = ggplot2::aes(fill = group),type = "t", level = 0.95, linetype = 2,alpha = 0.2)+
@@ -79,7 +78,7 @@ pca <- function(data = data,
   if(display_sample == FALSE){
     plot = p1
   } else {
-    plot = p1 + ggplot2::geom_text(ggplot2::aes(label = sample),size = 2)
+    plot = p1 + ggplot2::geom_text(ggplot2::aes(label = sample),size = 4)
   }
   return(plot)
 }
