@@ -40,18 +40,21 @@ pca <- function(data = data,
   }
   if(rename == "diy"){
     if(is.null(sample_group)){
-      sample_group = data.frame(sample = rownames(data),group = rownames(data))
-    } else {
+      sample = rownames(data)
+      group = rownames(data)
       cat("...Notice:","the sequence of sample names\n")
-      cat("...must be matched for the input data rownames\n")
-    }
-    if(is.data.frame(sample_group)){
-      if(tibble::is_tibble(data)){
-        sample = sample_group[,1]
-        group = sample_group[,2]
+      cat("...must be same with the input data rownames\n")
+    } else {
+      if(is.data.frame(sample_group)){
+        if(tibble::is_tibble(data)){
+          sample = sample_group[,1]
+          group = sample_group[,2]
+        } else {
+          sample = rownames(sample_group)
+          group = as.character(sample_group[,1])
+        }
       } else {
-        sample = rownames(sample_group)
-        group = as.character(sample_group[,1])
+        cat("...the sample_group must be a dataframe or tibble\n")
       }
     }
   }
@@ -64,21 +67,26 @@ pca <- function(data = data,
   } else {
     stop("ERROR!!!!!!, the sample name sequece is not match the input data rowname")
   }
-  p1 <- ggplot2::ggplot(data = pc,mapping = ggplot2::aes(x = PC1,y = PC2))+
-  ggplot2::geom_point(size = 4,mapping = ggplot2::aes(color = group))+
-  ggplot2::geom_hline(yintercept = 0,linetype = 4,color = "grey")+
-  ggplot2::geom_vline(xintercept = 0,linetype = 4,color = "grey")+
-  ggplot2::stat_ellipse(geom = "polygon", mapping = ggplot2::aes(fill = group),type = "t", level = 0.95, linetype = 2,alpha = 0.2)+
-  ggplot2::labs(
-    x = paste("PC1","(",as.numeric(sprintf("%.3f",tmp[2,1]))*100,"%)",sep=""),
-    y = paste("PC2","(",as.numeric(sprintf("%.3f",tmp[2,2]))*100,"%)",sep=""),
-    title = "PCA")+
-  ggplot2::theme_bw()+
-  ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5,size =12))
+  plot <- ggplot2::ggplot(data = pc,mapping = ggplot2::aes(x = PC1,y = PC2))+
+    ggplot2::geom_point(size = 4,mapping = ggplot2::aes(color = group))+
+    ggplot2::geom_hline(yintercept = 0,linetype = 4,color = "grey")+
+    ggplot2::geom_vline(xintercept = 0,linetype = 4,color = "grey")+
+    ggplot2::labs(
+      x = paste("PC1","(",as.numeric(sprintf("%.3f",tmp[2,1]))*100,"%)",sep=""),
+      y = paste("PC2","(",as.numeric(sprintf("%.3f",tmp[2,2]))*100,"%)",sep=""),
+      title = "PCA")+
+    ggplot2::theme_bw()+
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5,size =12))
   if(display_sample == FALSE){
-    plot = p1
+    plot = plot
   } else {
-    plot = p1 + ggplot2::geom_text(ggplot2::aes(label = sample),size = 4)
+    plot = plot + ggplot2::geom_text(ggplot2::aes(label = sample),size = 4)
+  }
+
+  if(sample_group == FALSE){
+    plot = plot
+  } else {
+    plot = plot + ggplot2::stat_ellipse(geom = "polygon", mapping = ggplot2::aes(fill = group),type = "t", level = 0.95, linetype = 2,alpha = 0.2)
   }
   return(plot)
 }

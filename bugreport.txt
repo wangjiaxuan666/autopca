@@ -1,0 +1,2 @@
+1,20200904- sample_group must be a data.frame,not can be tibble
+2,the sample label be a number 
