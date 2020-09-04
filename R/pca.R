@@ -83,7 +83,7 @@ pca <- function(data = data,
     plot = plot + ggplot2::geom_text(ggplot2::aes(label = sample),size = 4)
   }
 
-  if(sample_group == FALSE){
+  if(sample_group = NULL){
     plot = plot
   } else {
     plot = plot + ggplot2::stat_ellipse(geom = "polygon", mapping = ggplot2::aes(fill = group),type = "t", level = 0.95, linetype = 2,alpha = 0.2)
