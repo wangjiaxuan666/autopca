@@ -13,7 +13,8 @@ pca(
   rename = c("diy", "replace"),
   sample_group = NULL,
   str_sample = NULL,
-  str_group = "-.*"
+  str_group = "-.*",
+  add_ploy = FALSE
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ pca(
 \item{str_sample}{the 'regexp' for the sample name to become the target name}
 
 \item{str_group}{the 'regexp' for the group name to become the target name}
+
+\item{add_ploy}{if TRUE will add the polygon on points.}
 }
 \value{
 a ggplot object
