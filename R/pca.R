@@ -4,7 +4,7 @@
 #' @param center the prcomp param, detail see '?prcomp'
 #' @param retx the prcomp param, detail see '?prcomp'
 #' @param str_sample the 'regexp' for the sample name to become the target name
-#' @param str_group the 'regexp' for the group name to become the target name
+#' @param str_group the 'regexp' for the group name base on the haved changed sample names
 #' @param scale the prcomp param, detail see '?prcomp'
 #' @param rename the method for change the sample and group names, two argment can choose, "diy" is for the creat a data for name,"replace" is use regexp to replace or change the name
 #' @param sample_group a data for change the sample and group name, the rownames is sample and the first column is group

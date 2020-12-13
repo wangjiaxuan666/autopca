@@ -4,7 +4,6 @@
 # autopca
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
 Originally,this R package `autopca` was a script I used to draw PCA. PCA
@@ -14,6 +13,16 @@ checking omics data. At present, this R package Features are very few
 But are under active development. The basic function is already there,
 so I placed on `github`, if necessary, you can download and use it
 yourself.
+
+## Update
+
+### fix bug 20201211
+
+-   [x] pca(dat) :Error in if (sample\_group == FALSE) { : 参数长度为零
+-   [ ] 将数据整理放在pca\_data\_tidy中，为后续loading 图做准备
+-   [x] sample\_group必须是tibble，要提取第二列
+-   [x]
+    要加上一个注释说明，str\_group必须在str\_sample已经更改的基础上修改
 
 ## Installation
 
@@ -32,7 +41,7 @@ FAILED WITH ANGRY AND BOOM ERRORS. Please contact me with
 me, I also have to admit that this is a bug-filled R package.
 
 > Every time I use this R packages , it will spend 95% time to fix new
-> bug\! Although it will spend a little time if i use the scicpt not R
+> bug! Although it will spend a little time if i use the scicpt not R
 > packages. Automation is always very difficult because it is suitable
 > for all kinds of situations and data type. BUT IT IS A FUN WHEN A
 > PROBLEM NEED TO THINK
@@ -51,13 +60,20 @@ is the `prcomp` data’ rownames. For example, the data iris
 
 ``` r
 head(iris)
-#>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-#> 1          5.1         3.5          1.4         0.2  setosa
-#> 2          4.9         3.0          1.4         0.2  setosa
-#> 3          4.7         3.2          1.3         0.2  setosa
-#> 4          4.6         3.1          1.5         0.2  setosa
-#> 5          5.0         3.6          1.4         0.2  setosa
-#> 6          5.4         3.9          1.7         0.4  setosa
+#>   Sepal.Length Sepal.Width Petal.Length Petal.Width
+#> 1          5.1         3.5          1.4         0.2
+#> 2          4.9         3.0          1.4         0.2
+#> 3          4.7         3.2          1.3         0.2
+#> 4          4.6         3.1          1.5         0.2
+#> 5          5.0         3.6          1.4         0.2
+#> 6          5.4         3.9          1.7         0.4
+#>   Species
+#> 1  setosa
+#> 2  setosa
+#> 3  setosa
+#> 4  setosa
+#> 5  setosa
+#> 6  setosa
 ```
 
 the rownames is every iris ID number, in iris, we want to demonstrate
@@ -74,7 +90,7 @@ pca(iristidy,sample_group = as.data.frame(irisgroup))
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" /> the
 group information is Grouping information is required, otherwise an
-error will be reported\!
+error will be reported!
 
 ``` r
 #pca(iris)
@@ -99,27 +115,27 @@ rownames(test) = paste("Gene", 1:20, sep = "")
 annot <- c(rep("KEGG",20))
 test <- data.frame(test,annot)
 head(test)
-#>          Test1       Test2     Test3       Test4    Test5
-#> Gene1 2.642318  0.01075823 1.9318349  1.14098262 5.112472
-#> Gene2 2.044672 -1.38949156 4.2521659 -0.63611784 2.544465
-#> Gene3 3.919184 -1.54281478 0.5474906 -0.06008812 3.497520
-#> Gene4 3.121889  0.39156311 2.8473876 -0.41146476 3.741726
-#> Gene5 4.102010  0.12145176 3.8684541  0.78510128 2.834575
-#> Gene6 1.950746  1.80108926 3.4667097 -0.53656806 3.342860
-#>             Test6    Test7      Test8    Test9     Test10
-#> Gene1 -0.77909277 3.776393 -1.0024396 2.275687 -0.2687162
-#> Gene2 -0.10227370 2.231693 -0.8370866 1.668522 -1.2718992
-#> Gene3 -0.77420999 3.765379 -0.9111919 2.003686  1.0643598
-#> Gene4 -1.87039530 2.353270  0.1492055 2.283257 -0.8706385
-#> Gene5 -0.02644458 2.875756  1.5934489 3.165864  1.4495411
-#> Gene6 -1.61785791 3.052599  1.5223910 2.276190 -1.1291582
-#>       annot
-#> Gene1  KEGG
-#> Gene2  KEGG
-#> Gene3  KEGG
-#> Gene4  KEGG
-#> Gene5  KEGG
-#> Gene6  KEGG
+#>          Test1       Test2    Test3      Test4
+#> Gene1 1.725887  0.04764380 2.058779 -1.6059854
+#> Gene2 3.760881 -0.65371784 4.874061  0.5028785
+#> Gene3 2.929488 -0.44336587 4.445698 -1.8696498
+#> Gene4 3.150790 -1.29402215 1.148138 -1.5302857
+#> Gene5 1.613527  0.09243078 4.689739 -1.2367590
+#> Gene6 2.771555 -0.02040210 1.145823  1.3783527
+#>          Test5       Test6    Test7      Test8
+#> Gene1 1.073998 -0.50857934 2.896407 -0.4028826
+#> Gene2 3.353186  0.90609343 2.991523 -0.5426889
+#> Gene3 2.394529  1.05414925 2.062414 -0.5419103
+#> Gene4 2.625141  0.01600571 2.581460  1.7061903
+#> Gene5 3.523545  1.40460527 4.097694 -0.4929172
+#> Gene6 3.908658 -0.01227529 3.268325 -2.0671006
+#>          Test9     Test10 annot
+#> Gene1 2.186983  0.2255060  KEGG
+#> Gene2 3.862698  0.3333618  KEGG
+#> Gene3 4.192628  0.8081068  KEGG
+#> Gene4 3.582339 -0.1848677  KEGG
+#> Gene5 4.736640 -1.1797428  KEGG
+#> Gene6 3.897739 -0.3944432  KEGG
 ```
 
 Through the above steps, we obtained a classic transcriptome data frame.
@@ -155,8 +171,7 @@ pca(test_tidy,sample_group = group)
 
 But `pca` function not only that, It supports regular matching
 characters to replace the names of sample or group. When the sample
-names is “CK-1\_fokm, CK-2\_fokm,” and so on , It will be very
-useful.
+names is “CK-1\_fokm, CK-2\_fokm,” and so on , It will be very useful.
 
 ``` r
 #pca(data = re,# the data didn't exist,just a example to display the parameter
@@ -187,23 +202,23 @@ ALL parameters explain :
 **Arguments**
 
     data:iput data form the function 'pca_data_tidy'
-    
+
     center:the prcomp param, detail see '?prcomp'
-    
+
     retx:the prcomp param, detail see '?prcomp'
-    
+
     scale:the prcomp param, detail see '?prcomp'
-    
+
     display_sample:if TRUE will add the text labels on points.
-    
+
     rename：the method for change the sample and group names, two argment can choose, "diy" is for the creat a data for name,"replace" is use regexp to replace or change the name
-    
+
     sample_group：a data for change the sample and group name, the rownames is sample and the first column is group
-    
+
     str_sample:the 'regexp' for the sample name to become the target name
-    
+
     str_group:the 'regexp' for the group name to become the target name
-    
+
     add_ploy:if TRUE will add the polygon on points.
 
 Of course, as a fan of `tidyverse`, all function in `autopca` also

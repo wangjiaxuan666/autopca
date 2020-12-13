@@ -34,7 +34,7 @@ pca(
 
 \item{str_sample}{the 'regexp' for the sample name to become the target name}
 
-\item{str_group}{the 'regexp' for the group name to become the target name}
+\item{str_group}{the 'regexp' for the group name base on the haved changed sample names}
 
 \item{add_ploy}{if TRUE will add the polygon on points.}
 }
