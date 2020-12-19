@@ -57,6 +57,6 @@ pca_data_tidy <- function(data,id = NULL){
     return(exp_data)
 
   } else {
-    print("...","Failed!!!:","please input the data that must be a data.frame or a tibble")
+    stop("...","Failed!!!:","please input the data that must be a data.frame or a tibble")
   }
 }
