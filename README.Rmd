@@ -13,10 +13,19 @@ knitr::opts_chunk$set(
 )
 ```
 
-# autopca
-
 <!-- badges: start -->
+
+[![](https://img.shields.io/github/issues/wangjiaxuan666/autopca)](https://img.shields.io/github/issues/wangjiaxuan666/autopca)
+[![](https://img.shields.io/github/issues/wangjiaxuan666/autopca)](https://img.shields.io/github/forks/wangjiaxuan666/autopca)
+[![](https://img.shields.io/github/issues/wangjiaxuan666/autopca)](https://img.shields.io/github/stars/wangjiaxuan666/autopca)
 <!-- badges: end -->
+
+# autopca:wrench: <img src='man/figures/autopca_logo.png' align="right" height="139" />
+
+**Author**: [Jiaxuan Wang](https://abego.cn/) :pencil:
+
+[![](https://img.shields.io/badge/follow%20me%20on-WeChat-green.svg)](https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/back/qrcode_for_Wechat.jpg)
+
 
 Originally,this R package `autopca` was a script I used to draw PCA. PCA can analyze batch effects in experimental processing, and also analyze experimental processing factors. In my point, it is  very important in checking omics data. At present, this R package Features are very few But are under active development. The basic function is already there, so I placed on `github`, if necessary, you can download and use it yourself.
 
@@ -25,9 +34,12 @@ Originally,this R package `autopca` was a script I used to draw PCA. PCA can ana
 ### fix bug 20201211
 
 - [x] pca(dat) :Error in if (sample_group == FALSE) { : 参数长度为零
-- [ ] 将数据整理放在pca_data_tidy中，为后续loading 图做准备
 - [x] sample_group必须是tibble，要提取第二列
 - [x] 要加上一个注释说明，str_group必须在str_sample已经更改的基础上修改
+
+### complete the function of add ploy line in pca plot
+
+- [x] pca function parameter `add_ploy` change to one character of ellipse","encircle","polygon". the plot see the example.
 
 ## Installation
 
@@ -59,9 +71,15 @@ Just like
 
 ```{r}
 library(autopca)
+library(patchwork)
 irisgroup <- iris[,5] 
 iristidy <- iris[,-5]
-pca(iristidy,sample_group = as.data.frame(irisgroup))
+p1 = pca(iris[,-5],sample_group = as.data.frame(iris[,5]))
+p2 = pca(iris[,-5],sample_group = as.data.frame(iris[,5]),add_ploy =  "ellipse")
+p3 =pca(iris[,-5],sample_group = as.data.frame(iris[,5]),add_ploy = "encircle")
+p4 = pca(iris[,-5],sample_group = as.data.frame(iris[,5]),add_ploy = "polygon")
+p1+p2+p3+p4
+
 ```
 the group information is Grouping information is required, otherwise an error will be reported!
 
@@ -155,3 +173,5 @@ add_ploy:if TRUE will add the polygon on points.
 
 Of course, as a fan of `tidyverse`, all function in `autopca` also  support `tibble` data input.
 If there are any questions and suggestions in use, welcome questions and suggestions
+
+2021-1-2

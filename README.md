@@ -1,10 +1,17 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# autopca
-
 <!-- badges: start -->
+
+[![](https://img.shields.io/github/issues/wangjiaxuan666/autopca)](https://img.shields.io/github/issues/wangjiaxuan666/autopca)
+[![](https://img.shields.io/github/issues/wangjiaxuan666/autopca)](https://img.shields.io/github/forks/wangjiaxuan666/autopca)
+[![](https://img.shields.io/github/issues/wangjiaxuan666/autopca)](https://img.shields.io/github/stars/wangjiaxuan666/autopca)
 <!-- badges: end -->
+
+# autopca:wrench: <img src='man/figures/autopca_logo.png' align="right" height="139" />
+
+**Author**: [Jiaxuan Wang](https://abego.cn/) :pencil:
+
+[![](https://img.shields.io/badge/follow%20me%20on-WeChat-green.svg)](https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/back/qrcode_for_Wechat.jpg)
 
 Originally,this R package `autopca` was a script I used to draw PCA. PCA
 can analyze batch effects in experimental processing, and also analyze
@@ -19,10 +26,14 @@ yourself.
 ### fix bug 20201211
 
 -   [x] pca(dat) :Error in if (sample\_group == FALSE) { : 参数长度为零
--   [ ] 将数据整理放在pca\_data\_tidy中，为后续loading 图做准备
 -   [x] sample\_group必须是tibble，要提取第二列
 -   [x]
     要加上一个注释说明，str\_group必须在str\_sample已经更改的基础上修改
+
+### complete the function of add ploy line in pca plot
+
+-   [x] pca function parameter `add_ploy` change to one character of
+    ellipse“,”encircle“,”polygon". the plot see the example.
 
 ## Installation
 
@@ -60,20 +71,13 @@ is the `prcomp` data’ rownames. For example, the data iris
 
 ``` r
 head(iris)
-#>   Sepal.Length Sepal.Width Petal.Length Petal.Width
-#> 1          5.1         3.5          1.4         0.2
-#> 2          4.9         3.0          1.4         0.2
-#> 3          4.7         3.2          1.3         0.2
-#> 4          4.6         3.1          1.5         0.2
-#> 5          5.0         3.6          1.4         0.2
-#> 6          5.4         3.9          1.7         0.4
-#>   Species
-#> 1  setosa
-#> 2  setosa
-#> 3  setosa
-#> 4  setosa
-#> 5  setosa
-#> 6  setosa
+#>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#> 1          5.1         3.5          1.4         0.2  setosa
+#> 2          4.9         3.0          1.4         0.2  setosa
+#> 3          4.7         3.2          1.3         0.2  setosa
+#> 4          4.6         3.1          1.5         0.2  setosa
+#> 5          5.0         3.6          1.4         0.2  setosa
+#> 6          5.4         3.9          1.7         0.4  setosa
 ```
 
 the rownames is every iris ID number, in iris, we want to demonstrate
@@ -83,9 +87,14 @@ next analysis. Just like
 
 ``` r
 library(autopca)
+library(patchwork)
 irisgroup <- iris[,5] 
 iristidy <- iris[,-5]
-pca(iristidy,sample_group = as.data.frame(irisgroup))
+p1 = pca(iris[,-5],sample_group = as.data.frame(iris[,5]))
+p2 = pca(iris[,-5],sample_group = as.data.frame(iris[,5]),add_ploy =  "ellipse")
+p3 =pca(iris[,-5],sample_group = as.data.frame(iris[,5]),add_ploy = "encircle")
+p4 = pca(iris[,-5],sample_group = as.data.frame(iris[,5]),add_ploy = "polygon")
+p1+p2+p3+p4
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" /> the
@@ -115,27 +124,20 @@ rownames(test) = paste("Gene", 1:20, sep = "")
 annot <- c(rep("KEGG",20))
 test <- data.frame(test,annot)
 head(test)
-#>          Test1       Test2    Test3      Test4
-#> Gene1 1.725887  0.04764380 2.058779 -1.6059854
-#> Gene2 3.760881 -0.65371784 4.874061  0.5028785
-#> Gene3 2.929488 -0.44336587 4.445698 -1.8696498
-#> Gene4 3.150790 -1.29402215 1.148138 -1.5302857
-#> Gene5 1.613527  0.09243078 4.689739 -1.2367590
-#> Gene6 2.771555 -0.02040210 1.145823  1.3783527
-#>          Test5       Test6    Test7      Test8
-#> Gene1 1.073998 -0.50857934 2.896407 -0.4028826
-#> Gene2 3.353186  0.90609343 2.991523 -0.5426889
-#> Gene3 2.394529  1.05414925 2.062414 -0.5419103
-#> Gene4 2.625141  0.01600571 2.581460  1.7061903
-#> Gene5 3.523545  1.40460527 4.097694 -0.4929172
-#> Gene6 3.908658 -0.01227529 3.268325 -2.0671006
-#>          Test9     Test10 annot
-#> Gene1 2.186983  0.2255060  KEGG
-#> Gene2 3.862698  0.3333618  KEGG
-#> Gene3 4.192628  0.8081068  KEGG
-#> Gene4 3.582339 -0.1848677  KEGG
-#> Gene5 4.736640 -1.1797428  KEGG
-#> Gene6 3.897739 -0.3944432  KEGG
+#>          Test1       Test2    Test3      Test4    Test5
+#> Gene1 3.551009 -1.16156606 2.494282 -2.0029050 2.311414
+#> Gene2 1.035480 -0.04041621 1.426899  0.3231355 5.311818
+#> Gene3 2.879613 -0.43164532 3.184171  0.9168861 2.936128
+#> Gene4 1.036891  0.89441199 1.732773  0.1373383 2.836823
+#> Gene5 3.003990  0.26097851 3.162482 -0.1221119 3.988460
+#> Gene6 1.887346 -0.25826115 2.852820 -0.4903453 2.902215
+#>            Test6    Test7       Test8    Test9      Test10 annot
+#> Gene1 -1.4127155 4.553807  1.03955522 4.625260  0.07899018  KEGG
+#> Gene2 -1.2624575 2.846070 -1.32304364 1.759938 -1.13853462  KEGG
+#> Gene3  1.8682265 3.243656 -1.08284848 4.177493 -1.32925053  KEGG
+#> Gene4  0.8707386 3.448355  1.27892896 3.631018  0.64786600  KEGG
+#> Gene5  0.1661776 2.714665  0.02441847 2.118239  1.99553166  KEGG
+#> Gene6 -1.2972927 2.302292 -1.23645148 2.509957 -0.07415683  KEGG
 ```
 
 Through the above steps, we obtained a classic transcriptome data frame.
@@ -224,3 +226,5 @@ ALL parameters explain :
 Of course, as a fan of `tidyverse`, all function in `autopca` also
 support `tibble` data input. If there are any questions and suggestions
 in use, welcome questions and suggestions
+
+2021-1-2

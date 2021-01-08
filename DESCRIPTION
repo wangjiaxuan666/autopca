@@ -1,6 +1,6 @@
 Package: autopca
 Title: the packages created for the people can't analysis the bacth on the RNAseq data
-Version: 0.1
+Version: 1.0001
 Authors@R: 
     person(given = "Jiaxuan",
            family = "Wang",
@@ -13,13 +13,12 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 Suggests: 
-    testthat (>= 2.1.0),
-    knitr,
-    rmarkdown
+    tidyverse,
+    knitr
 Imports: 
     stats,
     ggplot2,
     dplyr,
     tibble,
-    plyr,
+    ggalt
 VignetteBuilder: knitr

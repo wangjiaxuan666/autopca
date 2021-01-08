@@ -14,7 +14,7 @@ pca(
   sample_group = NULL,
   str_sample = NULL,
   str_group = "-.*",
-  add_ploy = FALSE
+  add_ploy = c("null", "ellipse", "encircle", "polygon")
 )
 }
 \arguments{
@@ -28,7 +28,7 @@ pca(
 
 \item{display_sample}{if TRUE will add the text labels on points.}
 
-\item{rename}{the method for change the sample and group names, two argment can choose, "diy" is for the creat a data for name,"replace" is use regexp to replace or change the name}
+\item{rename}{the method for change the sample and group names, two argment can choose, "diy" is for the creat a data for name,"replace" is use regexp to replace for change the name}
 
 \item{sample_group}{a data for change the sample and group name, the rownames is sample and the first column is group}
 
@@ -36,7 +36,8 @@ pca(
 
 \item{str_group}{the 'regexp' for the group name base on the haved changed sample names}
 
-\item{add_ploy}{if TRUE will add the polygon on points.}
+\item{add_ploy}{will add the ploy line to encircle the sample points, can choose the ploy style form "ellipse","encircle","polygon",
+see the plot in example. the default is "polygon".}
 }
 \value{
 a ggplot object
@@ -45,5 +46,9 @@ a ggplot object
 PCA plot
 }
 \examples{
+library(autopca)
 pca(iris[,-5],sample_group = as.data.frame(iris[,5]))
+pca(iris[,-5],sample_group = as.data.frame(iris[,5]),add_ploy = "ellipse")
+pca(iris[,-5],sample_group = as.data.frame(iris[,5]),add_ploy = "encircle")
+pca(iris[,-5],sample_group = as.data.frame(iris[,5]),add_ploy = "polygon")
 }
