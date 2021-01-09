@@ -20,5 +20,7 @@ Imports:
     ggplot2,
     dplyr,
     tibble,
-    ggalt
+    ggalt,
+    gridBase,
+    grid
 VignetteBuilder: knitr
