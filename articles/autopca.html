@@ -159,20 +159,20 @@ sample_group必须是tibble，要提取第二列</li>
 <span class="va">annot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"KEGG"</span>,<span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">test</span>,<span class="va">annot</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span>
-<span class="co">#&gt;          Test1      Test2    Test3      Test4    Test5      Test6     Test7</span>
-<span class="co">#&gt; Gene1 2.252955 -0.6590865 2.144240 -0.8890563 1.363302  0.6512121 1.2249934</span>
-<span class="co">#&gt; Gene2 3.481855 -0.1682599 2.574677 -0.9439510 2.129731  0.4391962 1.4220933</span>
-<span class="co">#&gt; Gene3 4.626074  0.8029464 2.451850 -1.5555811 3.105937 -1.8410319 0.7374772</span>
-<span class="co">#&gt; Gene4 3.911239  1.4637806 3.562086  0.7040488 2.306849  0.6599763 4.4424312</span>
-<span class="co">#&gt; Gene5 4.386124  2.2542213 2.596945 -1.3364150 1.742801 -1.2889048 0.6681814</span>
-<span class="co">#&gt; Gene6 3.172580 -0.4674209 3.665357 -1.8100073 2.645289  0.3025520 1.3375413</span>
-<span class="co">#&gt;            Test8    Test9      Test10 annot</span>
-<span class="co">#&gt; Gene1 -0.5411594 6.010492  0.09795058  KEGG</span>
-<span class="co">#&gt; Gene2 -0.2609685 3.431513  0.24701519  KEGG</span>
-<span class="co">#&gt; Gene3 -1.4289675 4.485142 -0.33965142  KEGG</span>
-<span class="co">#&gt; Gene4 -0.3161122 5.144168 -0.53594643  KEGG</span>
-<span class="co">#&gt; Gene5 -1.7552891 3.828321  0.98547098  KEGG</span>
-<span class="co">#&gt; Gene6 -0.1179438 1.637065  1.65735546  KEGG</span></code></pre></div>
+<span class="co">#&gt;          Test1       Test2    Test3      Test4    Test5       Test6    Test7</span>
+<span class="co">#&gt; Gene1 2.562569 -0.15135078 1.731849  1.4424722 3.348678  0.52963045 3.271949</span>
+<span class="co">#&gt; Gene2 3.641321  2.07398787 5.450727  0.1375214 3.307695 -0.93322454 1.938504</span>
+<span class="co">#&gt; Gene3 4.035419 -0.65998826 1.421451 -1.6864910 3.907317 -0.07160955 1.553088</span>
+<span class="co">#&gt; Gene4 2.318105 -0.04782768 1.851394  0.8352315 1.749672 -2.04783111 4.941446</span>
+<span class="co">#&gt; Gene5 2.741845  0.13621827 2.269068  0.9051854 1.334616  1.07727665 3.412446</span>
+<span class="co">#&gt; Gene6 4.769694  0.68229963 3.596805  1.5455981 2.863689  1.28741238 3.552336</span>
+<span class="co">#&gt;            Test8    Test9     Test10 annot</span>
+<span class="co">#&gt; Gene1  0.4463928 3.705718 -0.2283631  KEGG</span>
+<span class="co">#&gt; Gene2 -1.1809640 1.464490 -0.5202140  KEGG</span>
+<span class="co">#&gt; Gene3  0.7257639 3.518594  0.2657671  KEGG</span>
+<span class="co">#&gt; Gene4  1.0381389 1.465382 -1.2865464  KEGG</span>
+<span class="co">#&gt; Gene5 -0.8565821 3.217123 -0.9417711  KEGG</span>
+<span class="co">#&gt; Gene6 -1.0287205 3.322001 -1.0152498  KEGG</span></code></pre></div>
 <p>Through the above steps, we obtained a classic transcriptome data frame. <strong>NOW WE explain the sample variance in PC. So we need tidy the data by the function<code>pca_data_tidy</code>.</strong></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pca_data_tidy.html">pca_data_tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">test_tidy</span>
