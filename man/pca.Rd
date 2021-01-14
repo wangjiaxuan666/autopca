@@ -16,7 +16,7 @@ pca(
   str_group = "-.*",
   add_ploy = c("null", "ellipse", "encircle", "polygon"),
   name_size = 4,
-  point_size = 4
+  point_size = 2
 )
 }
 \arguments{

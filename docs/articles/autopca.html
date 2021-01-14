@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">autopca</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.900</span>
       </span>
     </div>
 
@@ -43,8 +43,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/wangjiaxuan666/autopca/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -60,7 +70,7 @@
       <h1 data-toc-skip>autopca</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/wangjiaxuan666/autopca/blob/master/vignettes/autopca.Rmd"><code>vignettes/autopca.Rmd</code></a></small>
       <div class="hidden name"><code>autopca.Rmd</code></div>
 
     </div>
@@ -154,19 +164,19 @@ sample_group必须是tibble，要提取第二列</li>
 <span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">test</span>,<span class="va">annot</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span>
 <span class="co">#&gt;          Test1       Test2    Test3      Test4    Test5       Test6    Test7</span>
-<span class="co">#&gt; Gene1 3.267931  0.91237868 4.646059  0.2309259 3.709387  0.04647769 3.489686</span>
-<span class="co">#&gt; Gene2 2.829540  0.03901312 3.524481  0.9503726 3.240216 -0.22768058 2.937959</span>
-<span class="co">#&gt; Gene3 4.048563  1.12212255 2.758600  0.7615087 2.480084 -0.32998783 3.879780</span>
-<span class="co">#&gt; Gene4 3.234311  0.46701858 4.654045 -2.0453133 1.997697  1.09224969 3.518972</span>
-<span class="co">#&gt; Gene5 2.576590 -0.04524131 3.342558  0.3590418 3.262007 -1.18062488 3.562527</span>
-<span class="co">#&gt; Gene6 3.643790 -0.87362786 1.302390 -0.3530821 3.140370 -1.75926238 3.878576</span>
+<span class="co">#&gt; Gene1 4.291649  1.70574277 3.498262 -1.1874693 3.783874  0.05649316 3.391127</span>
+<span class="co">#&gt; Gene2 2.798869  0.64610490 2.594259 -1.5175268 2.351683 -1.74398649 4.618995</span>
+<span class="co">#&gt; Gene3 3.102504 -0.11499333 2.962186  0.1293812 3.392990 -1.30583740 3.024271</span>
+<span class="co">#&gt; Gene4 2.252334  0.47421214 2.546950 -1.6591297 4.725885 -1.66804499 3.216001</span>
+<span class="co">#&gt; Gene5 3.418433 -2.18411612 3.542779 -1.0304116 2.273971  0.02952300 1.938294</span>
+<span class="co">#&gt; Gene6 3.265256 -0.07776028 2.592512  0.2704961 4.317028 -0.60049798 3.417487</span>
 <span class="co">#&gt;            Test8    Test9     Test10 annot</span>
-<span class="co">#&gt; Gene1 -0.6654010 3.095516  1.3220373  KEGG</span>
-<span class="co">#&gt; Gene2 -0.1537121 2.435680 -1.9569596  KEGG</span>
-<span class="co">#&gt; Gene3 -1.1118196 3.718512  1.8335826  KEGG</span>
-<span class="co">#&gt; Gene4  1.7493899 1.087042  0.1431421  KEGG</span>
-<span class="co">#&gt; Gene5 -0.3419618 4.057907  0.5060151  KEGG</span>
-<span class="co">#&gt; Gene6 -1.2682241 3.232261 -0.5787628  KEGG</span></code></pre></div>
+<span class="co">#&gt; Gene1 -1.5181951 2.990443  0.7996601  KEGG</span>
+<span class="co">#&gt; Gene2  0.2909972 2.060165 -1.1016041  KEGG</span>
+<span class="co">#&gt; Gene3 -0.8010135 1.216073 -0.4500526  KEGG</span>
+<span class="co">#&gt; Gene4  1.0743875 3.979830  1.2794754  KEGG</span>
+<span class="co">#&gt; Gene5 -0.3119841 2.140349 -0.3129934  KEGG</span>
+<span class="co">#&gt; Gene6  0.6315125 1.964468  0.5889670  KEGG</span></code></pre></div>
 <p>Through the above steps, we obtained a classic transcriptome data frame. <strong>NOW WE explain the sample variance in PC. So we need tidy the data by the function<code>pca_data_tidy</code>.</strong></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pca_data_tidy.html">pca_data_tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">test_tidy</span>

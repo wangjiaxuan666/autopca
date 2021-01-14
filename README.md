@@ -23,27 +23,15 @@ yourself.
 
 ## Update
 
-### fix bug 20201211
-
--   [x] pca(dat) :Error in if (sample\_group == FALSE) { : 参数长度为零
--   [x] sample\_group必须是tibble，要提取第二列
--   [x]
-    要加上一个注释说明，str\_group必须在str\_sample已经更改的基础上修改
-
-### complete the function of add ploy line in pca plot
-
--   [x] pca function parameter `add_ploy` change to one character of
-    ellipse“,”encircle“,”polygon". the plot see the example.
+``` r
+install.packages("devtools")
+devtools::install_github("wangjiaxuan666/autopca")
+```
 
 ## Installation
 
 The R packages only can install the development version from
 [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("wangjiaxuan666/autopca")
-```
 
 Notice : if you install `autopca` failed , please check the R installed
 envirment. maybe you need install `tidyverse` or `plyr` before. IF YOU
@@ -97,7 +85,7 @@ p4 = pca(iris[,-5],sample_group = as.data.frame(iris[,5]),add_ploy = "polygon")
 p1+p2+p3+p4
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" /> the
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" /> the
 group information is Grouping information is required, otherwise an
 error will be reported!
 
@@ -124,20 +112,27 @@ rownames(test) = paste("Gene", 1:20, sep = "")
 annot <- c(rep("KEGG",20))
 test <- data.frame(test,annot)
 head(test)
-#>          Test1       Test2    Test3      Test4    Test5
-#> Gene1 3.551009 -1.16156606 2.494282 -2.0029050 2.311414
-#> Gene2 1.035480 -0.04041621 1.426899  0.3231355 5.311818
-#> Gene3 2.879613 -0.43164532 3.184171  0.9168861 2.936128
-#> Gene4 1.036891  0.89441199 1.732773  0.1373383 2.836823
-#> Gene5 3.003990  0.26097851 3.162482 -0.1221119 3.988460
-#> Gene6 1.887346 -0.25826115 2.852820 -0.4903453 2.902215
-#>            Test6    Test7       Test8    Test9      Test10 annot
-#> Gene1 -1.4127155 4.553807  1.03955522 4.625260  0.07899018  KEGG
-#> Gene2 -1.2624575 2.846070 -1.32304364 1.759938 -1.13853462  KEGG
-#> Gene3  1.8682265 3.243656 -1.08284848 4.177493 -1.32925053  KEGG
-#> Gene4  0.8707386 3.448355  1.27892896 3.631018  0.64786600  KEGG
-#> Gene5  0.1661776 2.714665  0.02441847 2.118239  1.99553166  KEGG
-#> Gene6 -1.2972927 2.302292 -1.23645148 2.509957 -0.07415683  KEGG
+#>          Test1       Test2    Test3       Test4    Test5
+#> Gene1 3.885105 -1.40996356 2.082833  1.74326260 2.922234
+#> Gene2 3.116096 -0.79413555 3.188819 -0.40254010 3.036880
+#> Gene3 2.817635 -0.98390401 2.651808 -1.87837298 2.957372
+#> Gene4 2.696947 -0.05363688 3.058046  0.13078877 3.612569
+#> Gene5 1.544220  0.34743798 2.642220 -0.04920413 1.315197
+#> Gene6 4.434048 -0.42054450 3.187126 -2.05952773 2.736322
+#>             Test6    Test7       Test8    Test9       Test10
+#> Gene1  1.08305670 4.035495 -0.01374523 5.178203  0.001947392
+#> Gene2  0.23804056 2.429948  1.40977634 4.485687  0.571390923
+#> Gene3 -0.32113599 2.343335  0.01128968 1.884459  0.230932915
+#> Gene4 -0.06159268 3.369248  0.13621463 4.633204 -0.476862998
+#> Gene5 -1.08884753 3.528223 -1.01294805 2.711387  0.075084606
+#> Gene6  0.09278681 2.462118 -0.40843086 2.840577 -0.116544660
+#>       annot
+#> Gene1  KEGG
+#> Gene2  KEGG
+#> Gene3  KEGG
+#> Gene4  KEGG
+#> Gene5  KEGG
+#> Gene6  KEGG
 ```
 
 Through the above steps, we obtained a classic transcriptome data frame.
@@ -169,7 +164,7 @@ head(group)
 pca(test_tidy,sample_group = group)
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
 
 But `pca` function not only that, It supports regular matching
 characters to replace the names of sample or group. When the sample

@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>the packages created for the people can't analysis the bacth on the RNAseq data • autopca</title>
+<title>the packages created for draw pca plot more easily. • autopca</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="the packages created for the people can't analysis the bacth on the RNAseq data">
-<meta property="og:description" content="base on the ggplot2 and R base, the pca plot is very low and stupid, but is my frist packages.">
+<script src="pkgdown.js"></script><meta property="og:title" content="the packages created for draw pca plot more easily.">
+<meta property="og:description" content="base on the ggplot2 and R base, the pca plot is created for draw pca plot more easily.you can use pca_data_tidy function tansfrom the input expression matrix. and pca funtion can draw the pca plot one step. but there is two many parameter need for the plot which is more beautiful. But I think it is worthed.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">autopca</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.900</span>
       </span>
     </div>
 
@@ -43,8 +43,18 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="news/index.html">Changelog</a>
+</li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/wangjiaxuan666/autopca/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -68,36 +78,14 @@
 <div id="update" class="section level2">
 <h2 class="hasAnchor">
 <a href="#update" class="anchor"></a>Update</h2>
-<div id="fix-bug-20201211" class="section level3">
-<h3 class="hasAnchor">
-<a href="#fix-bug-20201211" class="anchor"></a>fix bug 20201211</h3>
-<ul>
-<li>
-<input type="checkbox" disabled checked>
-pca(dat) :Error in if (sample_group == FALSE) { : 参数长度为零</li>
-<li>
-<input type="checkbox" disabled checked>
-sample_group必须是tibble，要提取第二列</li>
-<li>[x] 要加上一个注释说明，str_group必须在str_sample已经更改的基础上修改</li>
-</ul>
-</div>
-<div id="complete-the-function-of-add-ploy-line-in-pca-plot" class="section level3">
-<h3 class="hasAnchor">
-<a href="#complete-the-function-of-add-ploy-line-in-pca-plot" class="anchor"></a>complete the function of add ploy line in pca plot</h3>
-<ul class="task-list">
-<li>
-<input type="checkbox" disabled checked>
-pca function parameter <code>add_ploy</code> change to one character of ellipse“,”encircle“,”polygon". the plot see the example.</li>
-</ul>
-</div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"wangjiaxuan666/autopca"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>The R packages only can install the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"wangjiaxuan666/autopca"</span><span class="op">)</span></code></pre></div>
 <p>Notice : if you install <code>autopca</code> failed , please check the R installed envirment. maybe you need install <code>tidyverse</code> or <code>plyr</code> before. IF YOU FAILED WITH ANGRY AND BOOM ERRORS. Please contact me with <a href="mailto:poormouse@126.com" class="email">poormouse@126.com</a> , I’ m sorry about what happen to you. Although it’s me, I also have to admit that this is a bug-filled R package.</p>
 <blockquote>
 <p>Every time I use this R packages , it will spend 95% time to fix new bug! Although it will spend a little time if i use the scicpt not R packages. Automation is always very difficult because it is suitable for all kinds of situations and data type. BUT IT IS A FUN WHEN A PROBLEM NEED TO THINK</p>
@@ -128,7 +116,7 @@ pca function parameter <code>add_ploy</code> change to one character of ellipse�
 <span class="va">p3</span> <span class="op">=</span><span class="fu"><a href="reference/pca.html">pca</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span>,sample_group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span><span class="op">)</span>,add_ploy <span class="op">=</span> <span class="st">"encircle"</span><span class="op">)</span>
 <span class="va">p4</span> <span class="op">=</span> <span class="fu"><a href="reference/pca.html">pca</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>,<span class="op">-</span><span class="fl">5</span><span class="op">]</span>,sample_group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">iris</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span><span class="op">)</span>,add_ploy <span class="op">=</span> <span class="st">"polygon"</span><span class="op">)</span>
 <span class="va">p1</span><span class="op">+</span><span class="va">p2</span><span class="op">+</span><span class="va">p3</span><span class="op">+</span><span class="va">p4</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%"> the group information is Grouping information is required, otherwise an error will be reported!</p>
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"> the group information is Grouping information is required, otherwise an error will be reported!</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#pca(iris)</span></code></pre></div>
 <p>As for why and how to use <code>autopca</code>, We need to start from the beginning.</p>
@@ -147,20 +135,27 @@ pca function parameter <code>add_ploy</code> change to one character of ellipse�
 <span class="va">annot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"KEGG"</span>,<span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">test</span>,<span class="va">annot</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span>
-<span class="co">#&gt;          Test1       Test2    Test3      Test4    Test5</span>
-<span class="co">#&gt; Gene1 3.551009 -1.16156606 2.494282 -2.0029050 2.311414</span>
-<span class="co">#&gt; Gene2 1.035480 -0.04041621 1.426899  0.3231355 5.311818</span>
-<span class="co">#&gt; Gene3 2.879613 -0.43164532 3.184171  0.9168861 2.936128</span>
-<span class="co">#&gt; Gene4 1.036891  0.89441199 1.732773  0.1373383 2.836823</span>
-<span class="co">#&gt; Gene5 3.003990  0.26097851 3.162482 -0.1221119 3.988460</span>
-<span class="co">#&gt; Gene6 1.887346 -0.25826115 2.852820 -0.4903453 2.902215</span>
-<span class="co">#&gt;            Test6    Test7       Test8    Test9      Test10 annot</span>
-<span class="co">#&gt; Gene1 -1.4127155 4.553807  1.03955522 4.625260  0.07899018  KEGG</span>
-<span class="co">#&gt; Gene2 -1.2624575 2.846070 -1.32304364 1.759938 -1.13853462  KEGG</span>
-<span class="co">#&gt; Gene3  1.8682265 3.243656 -1.08284848 4.177493 -1.32925053  KEGG</span>
-<span class="co">#&gt; Gene4  0.8707386 3.448355  1.27892896 3.631018  0.64786600  KEGG</span>
-<span class="co">#&gt; Gene5  0.1661776 2.714665  0.02441847 2.118239  1.99553166  KEGG</span>
-<span class="co">#&gt; Gene6 -1.2972927 2.302292 -1.23645148 2.509957 -0.07415683  KEGG</span></code></pre></div>
+<span class="co">#&gt;          Test1       Test2    Test3       Test4    Test5</span>
+<span class="co">#&gt; Gene1 3.885105 -1.40996356 2.082833  1.74326260 2.922234</span>
+<span class="co">#&gt; Gene2 3.116096 -0.79413555 3.188819 -0.40254010 3.036880</span>
+<span class="co">#&gt; Gene3 2.817635 -0.98390401 2.651808 -1.87837298 2.957372</span>
+<span class="co">#&gt; Gene4 2.696947 -0.05363688 3.058046  0.13078877 3.612569</span>
+<span class="co">#&gt; Gene5 1.544220  0.34743798 2.642220 -0.04920413 1.315197</span>
+<span class="co">#&gt; Gene6 4.434048 -0.42054450 3.187126 -2.05952773 2.736322</span>
+<span class="co">#&gt;             Test6    Test7       Test8    Test9       Test10</span>
+<span class="co">#&gt; Gene1  1.08305670 4.035495 -0.01374523 5.178203  0.001947392</span>
+<span class="co">#&gt; Gene2  0.23804056 2.429948  1.40977634 4.485687  0.571390923</span>
+<span class="co">#&gt; Gene3 -0.32113599 2.343335  0.01128968 1.884459  0.230932915</span>
+<span class="co">#&gt; Gene4 -0.06159268 3.369248  0.13621463 4.633204 -0.476862998</span>
+<span class="co">#&gt; Gene5 -1.08884753 3.528223 -1.01294805 2.711387  0.075084606</span>
+<span class="co">#&gt; Gene6  0.09278681 2.462118 -0.40843086 2.840577 -0.116544660</span>
+<span class="co">#&gt;       annot</span>
+<span class="co">#&gt; Gene1  KEGG</span>
+<span class="co">#&gt; Gene2  KEGG</span>
+<span class="co">#&gt; Gene3  KEGG</span>
+<span class="co">#&gt; Gene4  KEGG</span>
+<span class="co">#&gt; Gene5  KEGG</span>
+<span class="co">#&gt; Gene6  KEGG</span></code></pre></div>
 <p>Through the above steps, we obtained a classic transcriptome data frame. <strong>NOW WE explain the sample variance in PC. So we need tidy the data by the function<code>pca_data_tidy</code>.</strong></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/pca_data_tidy.html">pca_data_tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">test_tidy</span>
@@ -182,7 +177,7 @@ pca function parameter <code>add_ploy</code> change to one character of ellipse�
 <span class="co">#&gt; Test5     A</span>
 <span class="co">#&gt; Test6     B</span>
 <span class="fu"><a href="reference/pca.html">pca</a></span><span class="op">(</span><span class="va">test_tidy</span>,sample_group <span class="op">=</span> <span class="va">group</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-6-1.png" width="100%"></p>
+<p><img src="reference/figures/README-unnamed-chunk-7-1.png" width="100%"></p>
 <p>But <code>pca</code> function not only that, It supports regular matching characters to replace the names of sample or group. When the sample names is “CK-1_fokm, CK-2_fokm,” and so on , It will be very useful.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#pca(data = re,# the data didn't exist,just a example to display the parameter</span>
@@ -233,7 +228,16 @@ pca function parameter <code>add_ploy</code> change to one character of ellipse�
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
+    <div class="links">
+<h2>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/wangjiaxuan666/autopca/">https://​github.com/​wangjiaxuan666/​autopca/​</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/wangjiaxuan666/autopca/issues">https://​github.com/​wangjiaxuan666/​autopca/​issues</a>
+</li>
+</ul>
+</div>
+<div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>

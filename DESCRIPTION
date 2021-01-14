@@ -1,17 +1,18 @@
+Type: Package
 Package: autopca
-Title: the packages created for the people can't analysis the bacth on the RNAseq data
-Version: 1.0001
+Title: the packages created for draw pca plot more easily.
+Version: 0.1.900
 Authors@R: 
     person(given = "Jiaxuan",
            family = "Wang",
            role = c("aut", "cre"),
            email = "poormouse@126.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: base on the ggplot2 and R base, the pca plot is very low and stupid, but is my frist packages.
+Description: base on the ggplot2 and R base, the pca plot is created for draw pca plot more easily.you can use pca_data_tidy function tansfrom the input expression matrix. and pca funtion can draw the pca plot one step. but there is two many parameter need for the plot which is more beautiful. But I think it is worthed.
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.1.1
+URL: https://wangjiaxuan666.github.io/autopca/,
+    https://github.com/wangjiaxuan666/autopca
+BugReports: https://github.com/wangjiaxuan666/autopca/issues
 Suggests: 
     tidyverse,
     knitr
@@ -24,3 +25,8 @@ Imports:
     gridBase,
     grid
 VignetteBuilder: knitr
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace",
+    "collate", "pkgapi::api_roclet"))
+RoxygenNote: 7.1.1
