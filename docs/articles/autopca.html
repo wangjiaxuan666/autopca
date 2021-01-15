@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>autopca • autopca</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -133,7 +139,7 @@ sample_group必须是tibble，要提取第二列</li>
 <span class="co">#&gt; 6          5.4         3.9          1.7         0.4  setosa</span></code></pre></div>
 <p>the rownames is every iris ID number, in iris, we want to demonstrate the proportion of each iris flower in terms of petal length and width and so on. That is we want, so for iris data, we just tidy a little for next analysis. Just like</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">autopca</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wangjiaxuan666.github.io/autopca/">autopca</a></span><span class="op">)</span>
 <span class="co">#&gt; Registered S3 methods overwritten by 'ggalt':</span>
 <span class="co">#&gt;   method                  from   </span>
 <span class="co">#&gt;   grid.draw.absoluteGrob  ggplot2</span>
@@ -163,20 +169,20 @@ sample_group必须是tibble，要提取第二列</li>
 <span class="va">annot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"KEGG"</span>,<span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">test</span>,<span class="va">annot</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span>
-<span class="co">#&gt;          Test1       Test2    Test3      Test4    Test5       Test6    Test7</span>
-<span class="co">#&gt; Gene1 4.291649  1.70574277 3.498262 -1.1874693 3.783874  0.05649316 3.391127</span>
-<span class="co">#&gt; Gene2 2.798869  0.64610490 2.594259 -1.5175268 2.351683 -1.74398649 4.618995</span>
-<span class="co">#&gt; Gene3 3.102504 -0.11499333 2.962186  0.1293812 3.392990 -1.30583740 3.024271</span>
-<span class="co">#&gt; Gene4 2.252334  0.47421214 2.546950 -1.6591297 4.725885 -1.66804499 3.216001</span>
-<span class="co">#&gt; Gene5 3.418433 -2.18411612 3.542779 -1.0304116 2.273971  0.02952300 1.938294</span>
-<span class="co">#&gt; Gene6 3.265256 -0.07776028 2.592512  0.2704961 4.317028 -0.60049798 3.417487</span>
-<span class="co">#&gt;            Test8    Test9     Test10 annot</span>
-<span class="co">#&gt; Gene1 -1.5181951 2.990443  0.7996601  KEGG</span>
-<span class="co">#&gt; Gene2  0.2909972 2.060165 -1.1016041  KEGG</span>
-<span class="co">#&gt; Gene3 -0.8010135 1.216073 -0.4500526  KEGG</span>
-<span class="co">#&gt; Gene4  1.0743875 3.979830  1.2794754  KEGG</span>
-<span class="co">#&gt; Gene5 -0.3119841 2.140349 -0.3129934  KEGG</span>
-<span class="co">#&gt; Gene6  0.6315125 1.964468  0.5889670  KEGG</span></code></pre></div>
+<span class="co">#&gt;          Test1      Test2    Test3       Test4    Test5       Test6    Test7</span>
+<span class="co">#&gt; Gene1 2.761865  0.8093437 2.910835 -0.55147314 2.981818  0.02986831 4.129516</span>
+<span class="co">#&gt; Gene2 3.012029  0.2021364 3.942120 -0.86557071 2.520596 -0.09600088 4.105236</span>
+<span class="co">#&gt; Gene3 3.235702  0.7171295 3.183174  0.23735420 3.525561  0.16928179 2.087716</span>
+<span class="co">#&gt; Gene4 0.271937 -0.8826715 2.974717 -0.02381401 3.313966 -0.80815937 3.299509</span>
+<span class="co">#&gt; Gene5 2.362170 -0.6089130 2.956533  0.84591955 3.793431  0.42218541 2.099652</span>
+<span class="co">#&gt; Gene6 3.980563 -1.0260322 2.403059 -1.79870458 2.678419  0.72724774 4.036874</span>
+<span class="co">#&gt;            Test8     Test9      Test10 annot</span>
+<span class="co">#&gt; Gene1 -0.3989877 2.9838882  1.17049329  KEGG</span>
+<span class="co">#&gt; Gene2  0.5989962 3.2255002 -0.87599396  KEGG</span>
+<span class="co">#&gt; Gene3 -0.5064056 3.6695715 -1.13876272  KEGG</span>
+<span class="co">#&gt; Gene4  1.0387806 3.2897270 -0.82772528  KEGG</span>
+<span class="co">#&gt; Gene5  0.3580267 3.7299110  0.15643901  KEGG</span>
+<span class="co">#&gt; Gene6 -1.7581223 0.9057865 -0.09497354  KEGG</span></code></pre></div>
 <p>Through the above steps, we obtained a classic transcriptome data frame. <strong>NOW WE explain the sample variance in PC. So we need tidy the data by the function<code>pca_data_tidy</code>.</strong></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pca_data_tidy.html">pca_data_tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">test_tidy</span>

@@ -1,0 +1,14 @@
+reference:
+- title: Tidy data
+  desc:  Transform the data form expression data(column:sample and row:gene) to a transpose matrix(column:gene,row:sample)
+  contents:
+  - '`pca_data_tidy`'
+- title: Plot
+  desc:  draw the plot one step
+  contents:
+  - '`pca`'
+articles:
+- title: Vignettes
+  navbar: ~
+  contents:
+  - autopca
