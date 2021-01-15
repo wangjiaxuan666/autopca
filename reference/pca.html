@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">autopca</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.900</span>
       </span>
     </div>
 
@@ -90,9 +90,17 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/wangjiaxuan666/autopca/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -107,7 +115,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>PCA plot</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/wangjiaxuan666/autopca/blob/master/R/pca.R'><code>R/pca.R</code></a></small>
     <div class="hidden name"><code>pca.Rd</code></div>
     </div>
 
@@ -127,7 +135,7 @@
   str_group <span class='op'>=</span> <span class='st'>"-.*"</span>,
   add_ploy <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"null"</span>, <span class='st'>"ellipse"</span>, <span class='st'>"encircle"</span>, <span class='st'>"polygon"</span><span class='op'>)</span>,
   name_size <span class='op'>=</span> <span class='fl'>4</span>,
-  point_size <span class='op'>=</span> <span class='fl'>4</span>
+  point_size <span class='op'>=</span> <span class='fl'>2</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -197,7 +205,7 @@ example. the default is "polygon".</p></td>
     <p>a ggplot object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>autopca</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://wangjiaxuan666.github.io/autopca/'>autopca</a></span><span class='op'>)</span>
 <span class='fu'>pca</span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span>,<span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span>,sample_group <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span>,<span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='pca-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>pca</span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span>,<span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span>,sample_group <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span>,<span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>,add_ploy <span class='op'>=</span> <span class='st'>"ellipse"</span><span class='op'>)</span>
 </div><div class='img'><img src='pca-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>pca</span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span>,<span class='op'>-</span><span class='fl'>5</span><span class='op'>]</span>,sample_group <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>[</span>,<span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>,add_ploy <span class='op'>=</span> <span class='st'>"encircle"</span><span class='op'>)</span>

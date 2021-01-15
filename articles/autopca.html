@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">autopca</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.900</span>
       </span>
     </div>
 
@@ -49,8 +49,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/wangjiaxuan666/autopca/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -66,7 +76,7 @@
       <h1 data-toc-skip>autopca</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/wangjiaxuan666/autopca/blob/master/vignettes/autopca.Rmd"><code>vignettes/autopca.Rmd</code></a></small>
       <div class="hidden name"><code>autopca.Rmd</code></div>
 
     </div>
@@ -129,7 +139,7 @@ sample_group必须是tibble，要提取第二列</li>
 <span class="co">#&gt; 6          5.4         3.9          1.7         0.4  setosa</span></code></pre></div>
 <p>the rownames is every iris ID number, in iris, we want to demonstrate the proportion of each iris flower in terms of petal length and width and so on. That is we want, so for iris data, we just tidy a little for next analysis. Just like</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">autopca</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wangjiaxuan666.github.io/autopca/">autopca</a></span><span class="op">)</span>
 <span class="co">#&gt; Registered S3 methods overwritten by 'ggalt':</span>
 <span class="co">#&gt;   method                  from   </span>
 <span class="co">#&gt;   grid.draw.absoluteGrob  ggplot2</span>
@@ -159,20 +169,20 @@ sample_group必须是tibble，要提取第二列</li>
 <span class="va">annot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"KEGG"</span>,<span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">test</span>,<span class="va">annot</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span>
-<span class="co">#&gt;          Test1       Test2    Test3      Test4    Test5       Test6    Test7</span>
-<span class="co">#&gt; Gene1 2.562569 -0.15135078 1.731849  1.4424722 3.348678  0.52963045 3.271949</span>
-<span class="co">#&gt; Gene2 3.641321  2.07398787 5.450727  0.1375214 3.307695 -0.93322454 1.938504</span>
-<span class="co">#&gt; Gene3 4.035419 -0.65998826 1.421451 -1.6864910 3.907317 -0.07160955 1.553088</span>
-<span class="co">#&gt; Gene4 2.318105 -0.04782768 1.851394  0.8352315 1.749672 -2.04783111 4.941446</span>
-<span class="co">#&gt; Gene5 2.741845  0.13621827 2.269068  0.9051854 1.334616  1.07727665 3.412446</span>
-<span class="co">#&gt; Gene6 4.769694  0.68229963 3.596805  1.5455981 2.863689  1.28741238 3.552336</span>
-<span class="co">#&gt;            Test8    Test9     Test10 annot</span>
-<span class="co">#&gt; Gene1  0.4463928 3.705718 -0.2283631  KEGG</span>
-<span class="co">#&gt; Gene2 -1.1809640 1.464490 -0.5202140  KEGG</span>
-<span class="co">#&gt; Gene3  0.7257639 3.518594  0.2657671  KEGG</span>
-<span class="co">#&gt; Gene4  1.0381389 1.465382 -1.2865464  KEGG</span>
-<span class="co">#&gt; Gene5 -0.8565821 3.217123 -0.9417711  KEGG</span>
-<span class="co">#&gt; Gene6 -1.0287205 3.322001 -1.0152498  KEGG</span></code></pre></div>
+<span class="co">#&gt;          Test1      Test2    Test3      Test4    Test5       Test6    Test7</span>
+<span class="co">#&gt; Gene1 3.892974 -1.3106631 3.937016  0.6136429 2.767213 -0.00419297 3.866141</span>
+<span class="co">#&gt; Gene2 2.233684 -1.3420477 3.917205  0.9109510 3.813143 -0.11010618 1.786046</span>
+<span class="co">#&gt; Gene3 2.973778 -0.4123836 3.435750  0.8154915 1.913169 -0.27554808 3.045088</span>
+<span class="co">#&gt; Gene4 3.572558  1.9637013 2.714500 -1.0348169 3.168115 -0.54002402 3.403038</span>
+<span class="co">#&gt; Gene5 3.540706 -0.6502315 3.650668  1.6403224 5.412351  0.70122032 4.350640</span>
+<span class="co">#&gt; Gene6 2.178167 -1.2913125 3.301540  1.3224250 4.029397  0.61868998 1.538671</span>
+<span class="co">#&gt;            Test8    Test9      Test10 annot</span>
+<span class="co">#&gt; Gene1 -0.2028536 3.406404 -0.14938716  KEGG</span>
+<span class="co">#&gt; Gene2  0.2487429 3.548187 -1.67532713  KEGG</span>
+<span class="co">#&gt; Gene3  1.2830596 1.342578  0.02411262  KEGG</span>
+<span class="co">#&gt; Gene4  0.6318837 2.715569 -0.27339718  KEGG</span>
+<span class="co">#&gt; Gene5  0.5130377 2.719531 -1.16745885  KEGG</span>
+<span class="co">#&gt; Gene6  3.0221815 3.699534 -0.15831537  KEGG</span></code></pre></div>
 <p>Through the above steps, we obtained a classic transcriptome data frame. <strong>NOW WE explain the sample variance in PC. So we need tidy the data by the function<code>pca_data_tidy</code>.</strong></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pca_data_tidy.html">pca_data_tidy</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">test_tidy</span>
